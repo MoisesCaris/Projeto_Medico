@@ -1,7 +1,9 @@
 package com.projeto.projeto.controller;
 
 import com.projeto.projeto.DTO.AuthenticationDTO;
+import com.projeto.projeto.DTO.LoginResponseDTO;
 import com.projeto.projeto.DTO.RegisterDTO;
+import com.projeto.projeto.infra.security.TokenService;
 import com.projeto.projeto.models.UserModels;
 import com.projeto.projeto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,17 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationDTO authenticationDTO) {
         var userPassword = new UsernamePasswordAuthenticationToken(authenticationDTO.email(), authenticationDTO.password());
         var auth = this.authenticationManager.authenticate(userPassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((UserModels) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
