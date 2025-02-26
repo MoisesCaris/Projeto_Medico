@@ -44,6 +44,15 @@ public class UserModels implements UserDetails {
     @Column(nullable = false)
     private UserRole role;
 
+    public UserModels(String name, String email, String password, String fone, String cpf, UserRole role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.fone = fone;
+        this.cpf = cpf;
+        this.role = role;
+    }
+
     @CreationTimestamp
     private LocalDateTime created;
 
