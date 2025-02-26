@@ -19,5 +19,7 @@ public class PacientModel {
     @Column(name = "health_plan",nullable = true)
     private String health_plan;
 
+    @OneToOne
     @JoinColumn(name = "id_user")
+    private UserModels userModel;
 }
