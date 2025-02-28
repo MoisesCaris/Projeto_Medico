@@ -5,12 +5,16 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
 @Entity(name = "Hospital")
+@AllArgsConstructor
+@NoArgsConstructor
 public class HospitalModel {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -27,4 +31,11 @@ public class HospitalModel {
 
     @Column(nullable = false)
     private String state;
+
+    public HospitalModel(String name, String address, String city, String state) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+    }
 }
