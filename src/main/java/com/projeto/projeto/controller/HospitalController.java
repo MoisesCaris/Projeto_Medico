@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.projeto.projeto.service.HospitalService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,9 +25,19 @@ public class HospitalController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterHospitalDTO data) {
-        var hospital = new HospitalModel(data.name(),data.city(),data.address(),data.State());
+        var hospital = new HospitalModel(data.name(),data.address(),data.city(),data.state());
         this.hospitalRepository.save(hospital);
         return ResponseEntity.status(HttpStatus.CREATED).body(hospital);
+    }
+
+    @GetMapping("/take/{city}")
+    public ResponseEntity<List<RegisterHospitalDTO>> getCity(@PathVariable String city) {
+        return ResponseEntity.ok(hospitalService.getAllHospitalsByCity(city));
+    }
+
+    @GetMapping("/get/{state}")
+    public ResponseEntity<List<RegisterHospitalDTO>> getState(@PathVariable String state) {
+        return ResponseEntity.ok(hospitalService.getAllHospitalsByState(state));
     }
 
     @PatchMapping("/change/{ID}")

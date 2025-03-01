@@ -29,6 +29,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/hospital/register").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/hospital/change/{ID}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/hospital/take/{city}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/hospital/get/{state}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/doctor/").hasRole("DOCTOR")
                         .anyRequest().authenticated()

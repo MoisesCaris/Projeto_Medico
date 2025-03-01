@@ -19,4 +19,7 @@ public interface HospitalMapper {
     @Mapping(target = "city", ignore = true)
     @Mapping(target = "state", ignore = true)
     void uptadeHospitalName(@MappingTarget HospitalModel hospital, HospitalNameChangeDTO data);
+
+    @Mapping(source = "city", target = "city")
+    RegisterHospitalDTO toFindDTO(HospitalModel hospital);
 }
