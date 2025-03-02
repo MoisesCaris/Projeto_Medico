@@ -49,4 +49,8 @@ public class HospitalService {
     public List<RegisterHospitalDTO> getAllHospitalsByState(String state) {
         return hospitalRepository.findAllByState(state).stream().map(mapper::toFindDTO).toList();
     }
+
+    public List<RegisterHospitalDTO> getAllHospitalsByName(String name) {
+        return hospitalRepository.findByName(name).stream().map(mapper::toFindDTO).toList();
+    }
 }

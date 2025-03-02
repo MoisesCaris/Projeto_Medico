@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface HospitalRepository extends JpaRepository<HospitalModel, UUID> {
-    HospitalModel findByName(String name);
+    List<HospitalModel> findByName(String name);
 
     List<HospitalModel> findAllByCity(String city);
 

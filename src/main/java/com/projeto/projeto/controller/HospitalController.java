@@ -40,6 +40,11 @@ public class HospitalController {
         return ResponseEntity.ok(hospitalService.getAllHospitalsByState(state));
     }
 
+    @GetMapping("/get/by/{name}")
+    public ResponseEntity<List<RegisterHospitalDTO>> getName(@PathVariable String name) {
+        return ResponseEntity.ok(hospitalService.getAllHospitalsByName(name));
+    }
+
     @PatchMapping("/change/{ID}")
     public ResponseEntity<HospitalNameChangeDTO> change(@RequestBody HospitalNameChangeDTO data, @PathVariable UUID ID) {
         return ResponseEntity.ok((HospitalNameChangeDTO) hospitalService.hospitalNameChange(ID, data));

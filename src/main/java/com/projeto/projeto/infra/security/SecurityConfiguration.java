@@ -31,6 +31,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.PATCH, "/hospital/change/{ID}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/hospital/take/{city}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/hospital/get/{state}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/hospital/get/by/{name}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/doctor/").hasRole("DOCTOR")
                         .anyRequest().authenticated()
