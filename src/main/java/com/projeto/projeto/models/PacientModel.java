@@ -21,7 +21,7 @@ public class PacientModel {
     private String sex;
 
     @Column(name = "health_plan",nullable = true)
-    private String health_plan;
+    private String healthPlan;
 
     @OneToOne
     @JoinColumn(name = "id_user")

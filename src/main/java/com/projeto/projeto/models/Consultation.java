@@ -41,4 +41,5 @@ public class Consultation {
 
     @CreationTimestamp
     private LocalDateTime created;
+
 }
