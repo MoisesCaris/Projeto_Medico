@@ -25,7 +25,7 @@ public class Exams {
     @Column(nullable = false)
     private String result;
 
-    @Column(name = "exam_type", nullable = false)
+    @Column(name = "exam_tyoe", nullable = false)
     private String examType;
 
     @ManyToOne

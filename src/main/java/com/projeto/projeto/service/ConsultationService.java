@@ -8,6 +8,9 @@ import com.projeto.projeto.repository.ConsultationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class ConsultationService {
 
@@ -32,5 +35,13 @@ public class ConsultationService {
 
         Consultation newConsultation = mapper.consultationRegister(data, dependecies.doctorModel(),dependecies.pacientModel());
         consultationRepository.save(newConsultation);
+    }
+
+    public Consultation getConsultation(UUID id) {
+        return consultationRepository.findById(id).orElseThrow();
+    }
+
+    public List<Consultation> getConsultations() {
+        return consultationRepository.findAll();
     }
 }

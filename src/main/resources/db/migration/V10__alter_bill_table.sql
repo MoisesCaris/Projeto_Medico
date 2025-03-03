@@ -1,0 +1,1 @@
+alter table bill modify payment_date datetime null ;
