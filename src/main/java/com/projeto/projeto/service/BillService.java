@@ -1,6 +1,8 @@
 package com.projeto.projeto.service;
 
 import com.projeto.projeto.DTO.bill.BillDependecies;
+import com.projeto.projeto.DTO.bill.CompletePayment;
+import com.projeto.projeto.DTO.bill.PacientFindDTO;
 import com.projeto.projeto.DTO.bill.RegisterBillDTO;
 import com.projeto.projeto.mappers.BillMapper;
 import com.projeto.projeto.models.Bill;
@@ -8,9 +10,9 @@ import com.projeto.projeto.repository.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BillService {
@@ -29,9 +31,27 @@ public class BillService {
     }
 
     public void registerBill(RegisterBillDTO data){
-//        var date = LocalDateTime.now();
         BillDependecies dependecies = getBillDependecies(data);
         Bill bill = mapper.billRegister(data, dependecies.pacientModel());
         this.billRepository.save(bill);
+    }
+
+    public Bill getBill(UUID id) {
+        return this.billRepository.findById(id).orElseThrow();
+    }
+
+    public List<Bill> getBills() {
+        return this.billRepository.findAll();
+    }
+
+    public Object completePayment(CompletePayment data, UUID id){
+        var date = LocalDateTime.now();
+        Bill existingBill =  getBill(id);
+        mapper.completePayment(existingBill,data, date);
+        return this.billRepository.save(existingBill);
+    }
+
+    public List<PacientFindDTO> getBillByPacientID(UUID pacientID){
+        return billRepository.findByPacient(pacientID);
     }
 }
