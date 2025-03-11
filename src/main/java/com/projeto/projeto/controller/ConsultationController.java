@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/consultation")
 public class ConsultationController {
@@ -22,5 +24,10 @@ public class ConsultationController {
     @GetMapping("/get/consultation")
     public ResponseEntity findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(consultationService.getConsultations());
+    }
+
+    @GetMapping("/get/{ID}")
+    public ResponseEntity findByUserId(@PathVariable UUID ID) {
+        return ResponseEntity.status(HttpStatus.OK).body(consultationService.getConsultationsByPacient(ID)) ;
     }
 }

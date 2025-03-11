@@ -22,4 +22,8 @@ public class DoctorModel {
 
     @Column(nullable = false)
     private String specialty;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserModels userModel;
 }

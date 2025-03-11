@@ -1,6 +1,9 @@
 package com.projeto.projeto.service;
 
+import com.projeto.projeto.DTO.doctor.DoctorDependencies;
 import com.projeto.projeto.DTO.doctor.DoctorRegisterDTO;
+import com.projeto.projeto.DTO.pacient.PacientDependecies;
+import com.projeto.projeto.DTO.pacient.PacientRegisterDTO;
 import com.projeto.projeto.mappers.DoctorMapper;
 import com.projeto.projeto.models.DoctorModel;
 import com.projeto.projeto.repository.DoctorRepository;
@@ -20,6 +23,9 @@ public class DoctorService {
     @Autowired
     private DoctorMapper mapper;
 
+    @Autowired
+    private UserService userService;
+
     public DoctorModel getDoctor(UUID id) {
         return doctorRepository.findById(id).orElse(null);
     }
@@ -28,8 +34,15 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
+    private DoctorDependencies getDoctorDependecies(DoctorRegisterDTO data) {
+        return new DoctorDependencies(userService.getUser(data.userID()));
+    }
+
+
     public void register(DoctorRegisterDTO data) {
-        DoctorModel doctor = mapper.doctorRegister(data);
+        DoctorDependencies dependencies = getDoctorDependecies(data);
+
+        DoctorModel doctor = mapper.doctorRegister(data, dependencies.userModels());
         this.doctorRepository.save(doctor);
     }
 }

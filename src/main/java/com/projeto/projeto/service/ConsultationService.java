@@ -1,6 +1,7 @@
 package com.projeto.projeto.service;
 
 import com.projeto.projeto.DTO.consultation.ConsultationDependecies;
+import com.projeto.projeto.DTO.consultation.FindPacientConsultationDTO;
 import com.projeto.projeto.DTO.consultation.RegisterConsultationDTO;
 import com.projeto.projeto.mappers.ConsultationMapper;
 import com.projeto.projeto.models.Consultation;
@@ -43,5 +44,10 @@ public class ConsultationService {
 
     public List<Consultation> getConsultations() {
         return consultationRepository.findAll();
+    }
+
+    public List<FindPacientConsultationDTO> getConsultationsByPacient(UUID pacientID) {
+        System.out.println(consultationRepository.findByPacientID(pacientID));
+        return consultationRepository.findByPacientID(pacientID);
     }
 }

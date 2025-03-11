@@ -1,0 +1,1 @@
+alter table doctor add column user_id binary(16) references users(id);

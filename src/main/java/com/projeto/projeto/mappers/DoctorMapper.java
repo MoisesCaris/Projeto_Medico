@@ -2,6 +2,7 @@ package com.projeto.projeto.mappers;
 
 import com.projeto.projeto.DTO.doctor.DoctorRegisterDTO;
 import com.projeto.projeto.models.DoctorModel;
+import com.projeto.projeto.models.UserModels;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -11,5 +12,6 @@ public interface DoctorMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "crm", source = "data.crm")
     @Mapping(target = "specialty", source = "data.specialty")
-    DoctorModel doctorRegister(DoctorRegisterDTO data);
+    @Mapping(target = "userModel", source = "user")
+    DoctorModel doctorRegister(DoctorRegisterDTO data, UserModels user);
 }

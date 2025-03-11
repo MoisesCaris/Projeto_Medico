@@ -1,4 +1,6 @@
 package com.projeto.projeto.DTO.doctor;
 
-public record DoctorRegisterDTO(String crm, String specialty) {
+import java.util.UUID;
+
+public record DoctorRegisterDTO(String crm, String specialty, UUID userID) {
 }
