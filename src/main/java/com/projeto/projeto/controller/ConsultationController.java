@@ -26,8 +26,13 @@ public class ConsultationController {
         return ResponseEntity.status(HttpStatus.OK).body(consultationService.getConsultations());
     }
 
-    @GetMapping("/get/{ID}")
+    @GetMapping("/get/pacient/{ID}")
     public ResponseEntity findByUserId(@PathVariable UUID ID) {
         return ResponseEntity.status(HttpStatus.OK).body(consultationService.getConsultationsByPacient(ID)) ;
+    }
+
+    @GetMapping("/get/doctor/{ID}")
+    public ResponseEntity findByDoctorId(@PathVariable UUID ID) {
+        return ResponseEntity.status(HttpStatus.OK).body(consultationService.getConsultationsByDoctor(ID)) ;
     }
 }

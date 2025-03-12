@@ -2,12 +2,14 @@ package com.projeto.projeto.service;
 
 import com.projeto.projeto.DTO.exam.ExamDependecies;
 import com.projeto.projeto.DTO.exam.ExamRegisterDTO;
+import com.projeto.projeto.DTO.exam.FindExamDTO;
 import com.projeto.projeto.mappers.ExamsMapper;
 import com.projeto.projeto.models.Exams;
 import com.projeto.projeto.repository.ExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -39,5 +41,9 @@ public class ExamService {
 
     public Exams getExam(UUID id) {
         return examRepository.findById(id).orElseThrow();
+    }
+
+    public List<FindExamDTO> getExamsByPacientID(UUID pacientID) {
+        return examRepository.findByPacient(pacientID);
     }
 }

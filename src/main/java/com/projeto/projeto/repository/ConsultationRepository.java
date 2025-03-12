@@ -19,4 +19,14 @@ public interface ConsultationRepository extends JpaRepository<Consultation, UUID
             "JOIN d.userModel u2 " +
             "WHERE p.id = :pacientID")
     List<FindPacientConsultationDTO> findByPacientID(UUID pacientID);
+
+    @Query("SELECT new com.projeto.projeto.DTO.consultation.FindPacientConsultationDTO(u.name, u.email, u.fone, u.cpf, " +
+            "p.sex, p.healthPlan, c.consultationDate, c.treatmentPlan, c.diagnosed, c.symptoms, u2.name, d.specialty) " +
+            "FROM consultation c " +
+            "JOIN c.pacientModel p " +
+            "JOIN p.userModel u " +
+            "JOIN c.doctorModel d " +
+            "JOIN d.userModel u2 " +
+            "WHERE p.id = :doctorID")
+    List<FindPacientConsultationDTO> findByDoctorID(UUID doctorID);
 }

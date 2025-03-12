@@ -5,10 +5,9 @@ import com.projeto.projeto.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/exams")
@@ -21,5 +20,10 @@ public class ExamController {
     public ResponseEntity registerExam(@RequestBody ExamRegisterDTO data){
         examService.examRegister(data);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/get/pacient/{ID}")
+    public ResponseEntity getByPacient(@PathVariable UUID ID) {
+        return ResponseEntity.status(HttpStatus.OK).body(examService.getExamsByPacientID(ID));
     }
 }
