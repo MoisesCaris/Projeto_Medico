@@ -47,6 +47,7 @@ public class ConsultationService {
     }
 
     public List<FindPacientConsultationDTO> getConsultationsByPacient(UUID pacientID) {
+        System.out.println(consultationRepository.findByPacientID(pacientID));
         return consultationRepository.findByPacientID(pacientID);
     }
 
