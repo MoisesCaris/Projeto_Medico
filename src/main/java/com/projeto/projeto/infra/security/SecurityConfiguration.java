@@ -47,6 +47,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/bill/get/bill").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/bill/pay/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/bill/get/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/bill/get/open/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/bill/get/close/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/consultation/get/pacient/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/consultation/get/doctor/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated()

@@ -37,10 +37,12 @@ public class BillService {
     }
 
     public Bill getBill(UUID id) {
+
         return this.billRepository.findById(id).orElseThrow();
     }
 
     public List<Bill> getBills() {
+
         return this.billRepository.findAll();
     }
 
@@ -53,5 +55,13 @@ public class BillService {
 
     public List<PacientFindDTO> getBillByPacientID(UUID pacientID){
         return billRepository.findByPacient(pacientID);
+    }
+
+    public List<PacientFindDTO> getBillNotPayByPacientID(UUID pacientID){
+        return billRepository.findStatusOpen(pacientID);
+    }
+
+    public List<PacientFindDTO> getBillPayByPacientID(UUID pacientID){
+        return billRepository.findStatusClose(pacientID);
     }
 }

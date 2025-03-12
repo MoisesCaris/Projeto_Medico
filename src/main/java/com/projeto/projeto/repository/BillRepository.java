@@ -17,4 +17,20 @@ public interface BillRepository extends JpaRepository<Bill, UUID> {
             "JOIN p.userModel u " +
             "WHERE p.id = :pacientID")
     List<PacientFindDTO> findByPacient(UUID pacientID);
+
+    @Query("SELECT new com.projeto.projeto.DTO.bill.PacientFindDTO(u.name, u.email, u.fone, u.cpf, " +
+            "p.sex, p.healthPlan, b.value, b.paymentDate, b.status) " +
+            "FROM bill b " +
+            "JOIN b.pacientModel p " +
+            "JOIN p.userModel u " +
+            "WHERE p.id = :pacientID AND b.status is null ")
+    List<PacientFindDTO> findStatusOpen(UUID pacientID);
+
+    @Query("SELECT new com.projeto.projeto.DTO.bill.PacientFindDTO(u.name, u.email, u.fone, u.cpf, " +
+            "p.sex, p.healthPlan, b.value, b.paymentDate, b.status) " +
+            "FROM bill b " +
+            "JOIN b.pacientModel p " +
+            "JOIN p.userModel u " +
+            "WHERE p.id = :pacientID AND b.status is not null ")
+    List<PacientFindDTO> findStatusClose(UUID pacientID);
 }

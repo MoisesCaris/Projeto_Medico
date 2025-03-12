@@ -26,7 +26,7 @@ public class Bill {
     @Column(nullable = false)
     private Double value;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String status;
 
     @ManyToOne

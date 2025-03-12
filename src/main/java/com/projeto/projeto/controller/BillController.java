@@ -2,7 +2,6 @@ package com.projeto.projeto.controller;
 
 import com.projeto.projeto.DTO.bill.CompletePayment;
 import com.projeto.projeto.DTO.bill.RegisterBillDTO;
-import com.projeto.projeto.models.Bill;
 import com.projeto.projeto.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,5 +37,15 @@ public class BillController {
     @GetMapping("/get/{ID}")
     public ResponseEntity getBillById(@PathVariable UUID ID) {
         return ResponseEntity.status(HttpStatus.OK).body(billService.getBillByPacientID(ID));
+    }
+
+    @GetMapping("/get/open/{ID}")
+    public ResponseEntity getBillByOpenID(@PathVariable UUID ID) {
+        return ResponseEntity.status(HttpStatus.OK).body(billService.getBillNotPayByPacientID(ID));
+    }
+
+    @GetMapping("/get/close/{ID}")
+    public ResponseEntity getBillByCloseID(@PathVariable UUID ID) {
+        return ResponseEntity.status(HttpStatus.OK).body(billService.getBillPayByPacientID(ID));
     }
 }
