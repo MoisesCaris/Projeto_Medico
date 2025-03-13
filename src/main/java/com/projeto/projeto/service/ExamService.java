@@ -40,6 +40,7 @@ public class ExamService {
     }
 
     public Exams getExam(UUID id) {
+
         return examRepository.findById(id).orElseThrow();
     }
 

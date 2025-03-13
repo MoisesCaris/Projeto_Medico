@@ -39,10 +39,12 @@ public class ConsultationService {
     }
 
     public Consultation getConsultation(UUID id) {
+
         return consultationRepository.findById(id).orElseThrow();
     }
 
     public List<Consultation> getConsultations() {
+
         return consultationRepository.findAll();
     }
 

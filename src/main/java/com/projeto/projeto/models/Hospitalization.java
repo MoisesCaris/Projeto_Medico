@@ -32,6 +32,10 @@ public class Hospitalization {
     @JoinColumn(name = "pacient_id")
     private PacientModel pacientModel;
 
+    @OneToOne
+    @JoinColumn(name = "hospita_id")
+    private HospitalModel hospitalModel;
+
     @CreationTimestamp
     private LocalDateTime created;
 }

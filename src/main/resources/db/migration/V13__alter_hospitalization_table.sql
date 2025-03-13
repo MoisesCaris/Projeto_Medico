@@ -1,0 +1,1 @@
+alter table hospitalization add column hospital_id binary(16) references hospital(id);
