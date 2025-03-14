@@ -53,4 +53,8 @@ public class HospitalService {
     public List<RegisterHospitalDTO> getAllHospitalsByName(String name) {
         return hospitalRepository.findByName(name).stream().map(mapper::toFindDTO).toList();
     }
+
+    public List<HospitalModel> getAllHospitals() {
+        return hospitalRepository.findAll();
+    }
 }

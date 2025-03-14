@@ -54,6 +54,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/exams/get/pacient/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/hospitalization/register").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/hospitalization/exit/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/hospital/get").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/hospitalization/get").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

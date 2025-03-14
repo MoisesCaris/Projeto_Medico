@@ -6,6 +6,7 @@ import com.projeto.projeto.models.Hospitalization;
 import com.projeto.projeto.models.PacientModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.time.LocalDateTime;
 
@@ -28,5 +29,5 @@ public interface HospitalizationMapper {
     @Mapping(target = "pacientModel", ignore = true)
     @Mapping(target = "hospitalModel", ignore = true)
     @Mapping(target = "created", ignore = true)
-    Hospitalization exitHospitalization(LocalDateTime date);
+    Hospitalization exitHospitalization(@MappingTarget Hospitalization hospitalization, LocalDateTime date);
 }
