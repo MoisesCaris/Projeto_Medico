@@ -49,4 +49,9 @@ public class HospitalController {
     public ResponseEntity<HospitalNameChangeDTO> change(@RequestBody HospitalNameChangeDTO data, @PathVariable UUID ID) {
         return ResponseEntity.ok((HospitalNameChangeDTO) hospitalService.hospitalNameChange(ID, data));
     }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<HospitalModel>> getAll() {
+        return ResponseEntity.ok(hospitalRepository.findAll());
+    }
 }
