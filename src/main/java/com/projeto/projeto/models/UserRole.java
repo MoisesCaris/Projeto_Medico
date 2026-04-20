@@ -4,7 +4,8 @@ public enum UserRole {
     ADMIN("admin"),
     USER("user"),
     PACIENT("pacient"),
-    DOCTOR("doctor");
+    DOCTOR("doctor"),
+    ADMINSYS("adminsys");
 
     private String role;
 

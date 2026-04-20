@@ -58,8 +58,22 @@ public class UserModels implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return  List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if(this.role == UserRole.ADMIN) return  List.of(
+                new SimpleGrantedAuthority("ROLE_ADMIN"),
+                new SimpleGrantedAuthority("ROLE_USER"),
+                new SimpleGrantedAuthority("ROLE_DOCTOR"),
+                new SimpleGrantedAuthority("ROLE_ADMINSYS")
+        );
+        else if(this.role == UserRole.DOCTOR) return  List.of(
+                new SimpleGrantedAuthority("ROLE_DOCTOR")
+        );
+        else if(this.role == UserRole.ADMINSYS) return  List.of(
+                new SimpleGrantedAuthority("ROLE_ADMINSYS")
+        );
+        else return List.of(
+                new SimpleGrantedAuthority("ROLE_USER"),
+                new SimpleGrantedAuthority("ROLE_PACIENT")
+        );
     }
     @Override
     public String getUsername() {
